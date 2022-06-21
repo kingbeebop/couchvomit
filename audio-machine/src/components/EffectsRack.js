@@ -11,3 +11,5 @@ function EffectsRack({ effects }){
         </div>
     )
 }
+
+export default EffectsRack
