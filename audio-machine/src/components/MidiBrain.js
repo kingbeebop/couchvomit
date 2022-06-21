@@ -15,10 +15,9 @@ function MidiBrain( { effects }){
 
     useEffect(()=>{
     const startButton = document.querySelector('button')
-    
-
     startButton.addEventListener('click', ()=>{
         ctx = new AudioContext()
+        console.log(ctx)
     })
     },[])
 
@@ -68,6 +67,8 @@ function MidiBrain( { effects }){
     }
 
     function noteOn(note, velocity){
+        console.log(note)
+        
         const osc = ctx.createOscilator()
         
         const oscGain = ctx.createGain()
