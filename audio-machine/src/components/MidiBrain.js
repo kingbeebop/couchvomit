@@ -1,7 +1,9 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 
-function MidiBrain( { oscType, effects }){
+function MidiBrain( { effects }){
     window.AudioContext = window.AudioContext || window.webkitAudioContext
+
+    const [oscType, setOscType] = ('sine')
 
     let ctx
 
@@ -23,10 +25,11 @@ function MidiBrain( { oscType, effects }){
     }
     
     function failure(){
-        console.log('could not connect')
+        console.log('Could not connect')
     }
     
     function success(midiAccess){
+        console.log("Connected!")
         midiAccess.addEventListener('statechange', updateDevices)
         const inputs = midiAccess.inputs
 
