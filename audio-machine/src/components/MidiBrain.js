@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 function MidiBrain( { effects }){
     window.AudioContext = window.AudioContext || window.webkitAudioContext
 
-    const [oscType, setOscType] = ('sine')
+    const [oscType, setOscType] = useState('sine')
 
     function handleChange(e){
         e.preventDefault()
@@ -113,11 +113,11 @@ function MidiBrain( { effects }){
     <div>
         <form>
             <label>Oscillator Type: </label>
-            <select name="oscillator" id="oscillator">
-                <option value="sine" onChange={handleChange}>Sine</option>
-                <option value="square" onChange={handleChange}>Square</option>
-                <option value="triangle" onChange={handleChange}>Triangle</option>
-                <option value="sawtooth" onChange={handleChange}>Sawtooth</option>
+            <select name="oscillator" id="oscillator" onChange={handleChange}>
+                <option value="sine" >Sine</option>
+                <option value="square" >Square</option>
+                <option value="triangle" >Triangle</option>
+                <option value="sawtooth" >Sawtooth</option>
             </select>
         </form>
         <button>START</button>
