@@ -19,6 +19,11 @@ function MidiBrain( { effects }){
         ctx = new AudioContext()
         console.log(ctx)
     })
+
+    if (navigator.requestMIDIAccess){
+        navigator.requestMIDIAccess().then(success, failure)
+    }
+    
     },[])
 
     function midiToFreq(number) {
@@ -26,9 +31,7 @@ function MidiBrain( { effects }){
         return (a/32)*(2**(number-9)/12)
     }
 
-    if (navigator.requestMIDIAccess){
-        navigator.requestMIDIAccess().then(success, failure)
-    }
+    
     
     function failure(){
         console.log('Could not connect')
