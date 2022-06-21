@@ -11,14 +11,16 @@ function MidiBrain( { effects }){
     }
 
     let ctx
+    const oscillators = {}
 
     useEffect(()=>{
     const startButton = document.querySelector('button')
-    const oscillators = {}
+    
 
     startButton.addEventListener('click', ()=>{
         ctx = new AudioContext()
     })
+    },[])
 
     function midiToFreq(number) {
         const a = 440
@@ -105,7 +107,7 @@ function MidiBrain( { effects }){
     function updateDevices(e){
         console.log(e)
     }
-},[])
+
 
     return(
     <div>
