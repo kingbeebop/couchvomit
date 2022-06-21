@@ -5,6 +5,11 @@ function MidiBrain( { effects }){
 
     const [oscType, setOscType] = ('sine')
 
+    function handleChange(e){
+        e.preventDefault()
+        setOscType(e.target.value)
+    }
+
     let ctx
 
     useEffect(()=>{
@@ -40,6 +45,8 @@ function MidiBrain( { effects }){
     }
 
     function handleInput(input){
+        console.log(input)
+
         const command = input.data[0]
         const note = input.data[1]
         const velocity = input.data[2]
@@ -68,7 +75,7 @@ function MidiBrain( { effects }){
         const velocityGain = ctx.createGain()
         velocityGain.gain.value = velocityGainAmount
 
-        osc.type = 'sine'
+        osc.type = oscType
         osc.frequency.value = midiToFreq(note)
 
         osc.connect(oscGain)
@@ -100,7 +107,19 @@ function MidiBrain( { effects }){
     }
 },[])
 
-    return(<button>START</button>)
+    return(
+    <div>
+        <form>
+            <label>Oscillator Type: </label>
+            <select name="oscillator" id="oscillator">
+                <option value="sine" onChange={handleChange}>Sine</option>
+                <option value="square" onChange={handleChange}>Square</option>
+                <option value="triangle" onChange={handleChange}>Triangle</option>
+                <option value="sawtooth" onChange={handleChange}>Sawtooth</option>
+            </select>
+        </form>
+        <button>START</button>
+    </div>)
 }
 
 export default MidiBrain
