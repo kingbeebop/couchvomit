@@ -7,7 +7,6 @@ function AudioContainer() {
 
   const [effects, setEffects] = useState([])
   const [liveEffects, setLiveEffects] = useState([])
-  const [oscType, setOscType] = ('sine')
 
 //   useEffect(()=>{
 //     fetch()
@@ -17,9 +16,9 @@ function AudioContainer() {
 
   return (
     <div>
-      <MidiBrain effects = {liveEffects} oscType={oscType} />
-      <LiveEffects effects={liveEffects} />
-      <EffectsRack effects={effects} />
+      <MidiBrain effects = {liveEffects} />
+      <LiveEffects effects = {liveEffects} />
+      <EffectsRack effects = {effects} />
     </div>
   );
 }

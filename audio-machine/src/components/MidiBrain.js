@@ -26,9 +26,10 @@ function MidiBrain( { effects }){
     
     },[])
 
+
     function midiToFreq(number) {
         const a = 440
-        return (a/32)*(2**(number-9)/12)
+        return (a/32)*(2**((number-9)/12))
     }
 
     
@@ -42,8 +43,9 @@ function MidiBrain( { effects }){
         midiAccess.addEventListener('statechange', updateDevices)
         const inputs = midiAccess.inputs
 
+        console.log(inputs)
         inputs.forEach(input=>{
-            oninput.addEventListener('midimessage', handleInput)
+            input.addEventListener('midimessage', handleInput)
         })
 
     }
@@ -61,18 +63,20 @@ function MidiBrain( { effects }){
                 noteOn(note, velocity)
             }
             else {
-                noteOff()
+                noteOff(note)
             }
+            break;
             case 128:
-                noteOff()
+                noteOff(note)
                 break;
         }
     }
 
     function noteOn(note, velocity){
         console.log(note)
+        console.log(ctx)
         
-        const osc = ctx.createOscilator()
+        const osc = ctx.createOscillator()
         
         const oscGain = ctx.createGain()
         oscGain.gain.value = .33
@@ -90,15 +94,17 @@ function MidiBrain( { effects }){
 
         osc.gain = oscGain
         oscillators[note.toString()] = osc
+
         osc.start()
     }
 
     function noteOff(note){
         const osc = oscillators[note.toString()]
+
         const oscGain = osc.gain
 
         oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime)
-        oscGain.gain.expoentialRampToValueAtTime(0.0001, ctx.currentTime + 0.03)
+        oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.03)
 
         setTimeout(()=>{
             osc.stop()
