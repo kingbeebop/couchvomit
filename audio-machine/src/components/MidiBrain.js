@@ -18,7 +18,7 @@ function MidiBrain( { effects, onSave }){
     // },[])
 
     useEffect(()=>{
-
+        //toDO: clear effects
         effectsRack.forEach(effect=>{
             switch (effect.type) {
                 case 'delay':
@@ -26,6 +26,7 @@ function MidiBrain( { effects, onSave }){
                 case 'reverb' :
                     {}
                 case 'equalizer':
+                    {}
             }
         })
     }, effectsRack)
@@ -70,7 +71,17 @@ function MidiBrain( { effects, onSave }){
     function handleInput(input){
         
         const command = input.data[0]
+
+        if(command === 208){
+            return;
+        }
+
         const note = input.data[1]
+
+        if(command === 127){
+            noteOff(note)
+        }
+        
         const velocity = input.data[2]
         
         console.log(command, note, velocity)
