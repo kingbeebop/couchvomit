@@ -88,16 +88,16 @@ function MidiBrain( { effects, onSave }){
 
         switch (command) {
             case 144: //note on
-            {if (velocity > 0) {
+            if (velocity > 0) {
                 noteOn(note, velocity)
             }
             else {
                 noteOff(note)
             }
-            break;}
+            break;
             case 128:
-                {noteOff(note)
-                break;}
+                noteOff(note)
+                break;
         }
     }
 
