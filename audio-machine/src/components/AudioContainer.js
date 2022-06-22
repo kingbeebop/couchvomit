@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import EffectsRack from "./EffectsRack"
-import LiveEffects from "./LiveEffects"
 import MidiBrain from "./MidiBrain"
 
 function AudioContainer() {
@@ -24,8 +23,7 @@ function AudioContainer() {
 
   return (
     <div>
-      <MidiBrain effects = {liveEffects} />
-      <LiveEffects effects = {liveEffects} onClick={handleSave}/>
+      <MidiBrain effects = {liveEffects} onSave={handleSave}/>
       <EffectsRack effects = {effects} />
     </div>
   );

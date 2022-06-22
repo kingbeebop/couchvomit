@@ -1,12 +1,34 @@
 import { useState, useEffect } from "react"
+import Effect from "./Effect"
 
-function MidiBrain( { effects }){
+function MidiBrain( { effects, onSave }){
     window.AudioContext = window.AudioContext || window.webkitAudioContext
 
     const [oscType, setOscType] = useState('sine')
 
     let ctx
     const oscillators = {}
+
+    const [effectsRack, setEffectsRack] = useState([])
+
+    // useEffect(()=>{
+    //     fetch('.../rack')
+    //     .then(res=>res.json())
+    //     .then(data=>setEffectsRack(data))
+    // },[])
+
+    useEffect(()=>{
+
+        effectsRack.forEach(effect=>{
+            switch (effect.type) {
+                case 'delay':
+                    {}
+                case 'reverb' :
+                    {}
+                case 'equalizer':
+            }
+        })
+    }, effectsRack)
 
     useEffect(()=>{
     const startButton = document.querySelector('button')
@@ -50,8 +72,8 @@ function MidiBrain( { effects }){
         const command = input.data[0]
         const note = input.data[1]
         const velocity = input.data[2]
-
-        console.log(ctx)
+        
+        console.log(command, note, velocity)
 
         switch (command) {
             case 144: //note on
@@ -123,6 +145,7 @@ function MidiBrain( { effects }){
 
     return(
     <div>
+        <div id="midi-brain">
         <form>
             <label>Oscillator Type: </label>
             <select name="oscillator" id="oscillator" onChange={handleChange}>
@@ -133,6 +156,16 @@ function MidiBrain( { effects }){
             </select>
         </form>
         <button>START</button>
+        </div>
+        <div id="effects-rack">
+            <h1>Effects Chain</h1>
+            <button onClick={onSave}>Save</button>
+            {effects.map(effect=>{
+                return(
+                    <Effect effect={effect} />
+                )
+            })}
+        </div>
     </div>)
 }
 

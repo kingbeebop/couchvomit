@@ -1,7 +1,35 @@
 {"effects": [
     {
         "id": 0,
-        "name": "phaser or something",
-        "stuff": "more stuff"
+        "name": "Delay",
+        "type": "delay",
+        "parameters": {
+            "time": 0.4,
+            "amount": 1,
+            "feedback": 0.5
+        }
+    },
+    {
+        "id": 1,
+        "name": "EQ",
+        "type": "equalizer",
+        "parameters": {
+            "treble": 1,
+            "mid": 1,
+            "bass": 1
+        }
+    },
+    {
+        "id": 2,
+        "name": "Reverb",
+        "type": "reverb",
+        "parameters": {
+            "amount": 1,
+            "time": 0.01,
+            "decay": 0.5
+        }
     }
+],
+"rack": [
+
 ]}
