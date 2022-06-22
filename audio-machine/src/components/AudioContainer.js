@@ -14,10 +14,18 @@ function AudioContainer() {
 //     .then(data=>setEffects(data))
 //   },[])
 
+    function handleSave(){
+        // fetch('',{
+        //     method: 'PATCH',
+        //     headers: {'ContentType': 'application/json'},
+        //     body: {liveEffects}
+        // })
+    }
+
   return (
     <div>
       <MidiBrain effects = {liveEffects} />
-      <LiveEffects effects = {liveEffects} />
+      <LiveEffects effects = {liveEffects} onClick={handleSave}/>
       <EffectsRack effects = {effects} />
     </div>
   );

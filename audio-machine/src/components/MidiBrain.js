@@ -5,11 +5,6 @@ function MidiBrain( { effects }){
 
     const [oscType, setOscType] = useState('sine')
 
-    function handleChange(e){
-        e.preventDefault()
-        setOscType(e.target.value)
-    }
-
     let ctx
     const oscillators = {}
 
@@ -51,30 +46,32 @@ function MidiBrain( { effects }){
     }
 
     function handleInput(input){
-        console.log(input)
-
+        
         const command = input.data[0]
         const note = input.data[1]
         const velocity = input.data[2]
 
+        console.log(ctx)
+
         switch (command) {
             case 144: //note on
-            if (velocity > 0) {
+            {if (velocity > 0) {
                 noteOn(note, velocity)
             }
             else {
                 noteOff(note)
             }
-            break;
+            break;}
             case 128:
-                noteOff(note)
-                break;
+                {noteOff(note)
+                break;}
         }
     }
 
     function noteOn(note, velocity){
         console.log(note)
         console.log(ctx)
+        console.log(oscillators)
         
         const osc = ctx.createOscillator()
         
@@ -118,6 +115,11 @@ function MidiBrain( { effects }){
         console.log(e)
     }
 
+    function handleChange(e){
+        e.preventDefault()
+        console.log(e.target.value)
+        setOscType(e.target.value)
+    }
 
     return(
     <div>
